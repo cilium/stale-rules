@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  labels:
+    k8s-app: cilium-stale-rules
+  name: cilium-stale-rules
+spec:
+  selector:
+    matchLabels:
+      k8s-app: cilium-stale-rules
+  template:
+    metadata:
+      labels:
+        k8s-app: cilium-stale-rules
+    spec:
+      containers:
+      - command:
+        - stale-rules
+        image: "quay.io/cilium/stale-rules:v0.1"
+        imagePullPolicy: IfNotPresent
+        name: stale-rules
+        securityContext:
+          capabilities:
+            add:
+            - NET_ADMIN
+          privileged: true
+        volumeMounts:
+        - mountPath: /var/run/cilium
+          name: cilium-run
+      hostNetwork: true
+      restartPolicy: Always
+      serviceAccount: cilium
+      serviceAccountName: cilium
+      volumes:
+      - hostPath:
+          path: /var/run/cilium
+          type: DirectoryOrCreate
+        name: cilium-run
