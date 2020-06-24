@@ -32,4 +32,13 @@ not remove.
 
 ## Deployment
 
-TODO
+*Important*: Cilium must be running on all nodes. The stale rule detection will
+only proceed if there is a Cilium Agent to connect to.
+
+Note: You can modify the args to the program in the YAML below to run it with
+`-remove` or with `-verbose`. By default, this daemonset will simply log the
+stale rules it detected.
+
+```
+ kubectl -n kube-system create -f install/daemonset.yaml
+```
