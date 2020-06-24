@@ -114,6 +114,9 @@ func main() {
 	} else {
 		log.Infof("Found %d stale rules; none were deleted", deleted)
 	}
+
+	// We want to sleep forever to prevent restarts.
+	select {}
 }
 
 // rule is a wrapper over the netlink.Rule type so we can expand the String
