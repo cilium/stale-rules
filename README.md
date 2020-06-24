@@ -1,8 +1,8 @@
 # Cilium Stale Rules
 
 This program detects and optionally removes stale routing rules found on a
-node. This is useful for clusters which are or were running Cilium prior to
-v1.7.2, which fixes cleaning up left over stale rules.
+node. The fix to automatically cleanup the stale rules is in v1.7.4. This tool
+is useful for clusters which are or were running Cilium prior to v1.7.4.
 
 The rules that this tool looks for are rules that are created in ENI or Azure
 IPAM mode. These rules are created with priority `20` and `110`. The tool
