@@ -36,8 +36,8 @@ not remove.
 only proceed if there is a Cilium Agent to connect to.
 
 Note: You can modify the args to the program in the YAML below to run it with
-`-remove` or with `-verbose`. By default, this daemonset will simply log the
-stale rules it detected.
+`-remove`. By default, this daemonset will simply log the stale rules it
+detects.
 
 ```
  kubectl -n kube-system create -f install/daemonset.yaml
